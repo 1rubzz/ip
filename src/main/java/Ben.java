@@ -3,15 +3,16 @@ import java.util.ArrayList;
 
 public class Ben {
     public static final String horizontal_lines = "----------------------------------------";
+    public static int noOfTasks = 0;
 
     public static void main(String[] args) {
         printGreeting();
 
         // Have a new scanner
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Task> toDo = new ArrayList<>(100);
+        ArrayList<Task> list = new ArrayList<>(100);
 
-        recordTasks(scanner, toDo);
+        recordTasks(scanner, list);
         bidFarewell();
         System.out.println(horizontal_lines);
         scanner.close();
@@ -41,7 +42,7 @@ public class Ben {
 
                 System.out.println(horizontal_lines);
                 continue;
-            }read
+            }
 
             if (input.startsWith("mark")){
                 String[] parts = input.split(" ");
@@ -71,14 +72,59 @@ public class Ben {
                 continue;
             }
 
+            if (input.startsWith("todo")){
+                String[] parts = input.split(" ", 2);
+                ToDo curr = new ToDo(parts[1]);
+                list.add(curr);
+                noOfTasks++;
+
+                System.out.println(horizontal_lines);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(curr.returnStatus());
+                System.out.println("Now you have " + noOfTasks + " tasks in the list.");
+                System.out.println(horizontal_lines);
+                continue;
+            }
+
+            if (input.startsWith("deadline")){
+                String[] parts1 = input.split(" ", 2);
+                String[] parts2 = parts1[1].split(" /by ");
+                Deadline curr = new Deadline(parts2[1], parts2[0]);
+                list.add(curr);
+                noOfTasks++;
+
+                System.out.println(horizontal_lines);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(curr.returnStatus());
+                System.out.println("Now you have " + noOfTasks + " tasks in the list.");
+                System.out.println(horizontal_lines);
+                continue;
+            }
+
+            if (input.startsWith("event")){
+                String[] parts1 = input.split(" ", 2);
+                String[] parts2 = parts1[1].split(" /from ", 2);
+                String[] parts3 = parts2[1].split(" /to ");
+
+                Event curr = new Event(parts3[0], parts3[1], parts2[0]);
+                list.add(curr);
+                noOfTasks++;
+
+                System.out.println(horizontal_lines);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(curr.returnStatus());
+                System.out.println("Now you have " + noOfTasks + " tasks in the list.");
+                System.out.println(horizontal_lines);
+                continue;
+            }
+
             // else add input to list
             list.add(new Task(input));
+            noOfTasks++;
             System.out.println(horizontal_lines);
             System.out.println("added: " + input);
             System.out.println(horizontal_lines);
-
         }
-
     }
 
     // For greeting
