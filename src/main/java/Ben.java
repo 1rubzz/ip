@@ -25,108 +25,135 @@ public class Ben {
             // scans the entire line
             String input = s.nextLine();
 
-            if (input.equals("bye")){
-                System.out.println(horizontal_lines);
-                break;
-            }
-
-            // prints the list
-            if (input.equals("list")) {
-                System.out.println(horizontal_lines);
-                System.out.println("Here are the tasks in your list:");
-
-                for (int i = 0; i < list.size(); i++) {
-                    Task curr = list.get(i);
-                    System.out.println((i + 1) + "." + curr.returnStatus());
+            try {
+                processLine(input, list);
+            } catch (BenException e){
+                if (e.getMessage().equals("EXIT")){
+                    System.out.println(horizontal_lines);
+                    break;
                 }
 
                 System.out.println(horizontal_lines);
-                continue;
+                System.out.println("OOPS!!! " + e.getMessage());
+                System.out.println(horizontal_lines);
             }
-
-            if (input.startsWith("mark")){
-                String[] parts = input.split(" ");
-                // cater to 0 indexed array list
-                int index = Integer.parseInt(parts[1]) - 1;
-                // get task
-                Task curr = list.get(index);
-
-                curr.markAsDone();
-                System.out.println(horizontal_lines);
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println(curr.returnStatus());
-                System.out.println(horizontal_lines);
-                continue;
-            }
-
-            if (input.startsWith("unmark")){
-                String[] parts = input.split(" ");
-                int index = Integer.parseInt(parts[1]) - 1;
-                Task curr = list.get(index);
-
-                curr.unMarkAsDone();
-                System.out.println(horizontal_lines);
-                System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(curr.returnStatus());
-                System.out.println(horizontal_lines);
-                continue;
-            }
-
-            if (input.startsWith("todo")){
-                String[] parts = input.split(" ", 2);
-                ToDo curr = new ToDo(parts[1]);
-                list.add(curr);
-                noOfTasks++;
-
-                System.out.println(horizontal_lines);
-                System.out.println("Got it. I've added this task:");
-                System.out.println(curr.returnStatus());
-                System.out.println("Now you have " + noOfTasks + " tasks in the list.");
-                System.out.println(horizontal_lines);
-                continue;
-            }
-
-            if (input.startsWith("deadline")){
-                String[] parts1 = input.split(" ", 2);
-                String[] parts2 = parts1[1].split(" /by ");
-                Deadline curr = new Deadline(parts2[1], parts2[0]);
-                list.add(curr);
-                noOfTasks++;
-
-                System.out.println(horizontal_lines);
-                System.out.println("Got it. I've added this task:");
-                System.out.println(curr.returnStatus());
-                System.out.println("Now you have " + noOfTasks + " tasks in the list.");
-                System.out.println(horizontal_lines);
-                continue;
-            }
-
-            if (input.startsWith("event")){
-                String[] parts1 = input.split(" ", 2);
-                String[] parts2 = parts1[1].split(" /from ", 2);
-                String[] parts3 = parts2[1].split(" /to ");
-
-                Event curr = new Event(parts3[0], parts3[1], parts2[0]);
-                list.add(curr);
-                noOfTasks++;
-
-                System.out.println(horizontal_lines);
-                System.out.println("Got it. I've added this task:");
-                System.out.println(curr.returnStatus());
-                System.out.println("Now you have " + noOfTasks + " tasks in the list.");
-                System.out.println(horizontal_lines);
-                continue;
-            }
-
-            // else add input to list
-            list.add(new Task(input));
-            noOfTasks++;
-            System.out.println(horizontal_lines);
-            System.out.println("added: " + input);
-            System.out.println(horizontal_lines);
         }
     }
 
+    private static void processLine(String input, ArrayList<Task> list) throws BenException {
+
+        if (input.equals("bye")) {
+            throw new BenException("EXIT"); // special signal
+        }
+
+        // prints the list
+        if (input.equals("list")) {
+            System.out.println(horizontal_lines);
+            System.out.println("Here are the tasks in your list:");
+
+            for (int i = 0; i < list.size(); i++) {
+                Task curr = list.get(i);
+                System.out.println((i + 1) + "." + curr.returnStatus());
+            }
+
+            System.out.println(horizontal_lines);
+            return;
+        }
+
+        if (input.startsWith("mark")) {
+            String[] parts = input.split(" ");
+            if (parts.length != 2) {
+                throw new BenException("Please specify which task to mark.");
+            }
+
+            // cater to 0 indexed array list
+            int index = Integer.parseInt(parts[1]) - 1;
+            // get task
+            Task curr = list.get(index);
+
+            curr.markAsDone();
+            System.out.println(horizontal_lines);
+            System.out.println("Nice! I've marked this task as done:");
+            System.out.println(curr.returnStatus());
+            System.out.println(horizontal_lines);
+            return;
+        }
+
+        if (input.startsWith("unmark")){
+            String[] parts = input.split(" ");
+            if (parts.length != 2) {
+                throw new BenException("Please specify which task to unmark.");
+            }
+
+            int index = Integer.parseInt(parts[1]) - 1;
+            Task curr = list.get(index);
+
+            curr.unMarkAsDone();
+            System.out.println(horizontal_lines);
+            System.out.println("OK, I've marked this task as not done yet:");
+            System.out.println(curr.returnStatus());
+            System.out.println(horizontal_lines);
+            return;
+        }
+
+        // Added exception message
+        if (input.startsWith("todo")) {
+            String[] parts = input.split(" ", 2);
+            if (parts.length < 2 || parts[1].isBlank()) {
+                throw new BenException("The description of a todo task cannot be empty.");
+            }
+
+            ToDo curr = new ToDo(parts[1]);
+            list.add(curr);
+            noOfTasks++;
+
+            System.out.println(horizontal_lines);
+            System.out.println("Got it. I've added this task:");
+            System.out.println(curr.returnStatus());
+            System.out.println("Now you have " + noOfTasks + " tasks in the list.");
+            System.out.println(horizontal_lines);
+            return;
+        }
+
+        if (input.startsWith("deadline")){
+            String[] parts1 = input.split(" ", 2);
+            if (parts1.length < 2){
+                throw new BenException("The description of a deadline task cannot be empty.");
+            }
+
+            String[] parts2 = parts1[1].split(" /by ");
+            Deadline curr = new Deadline(parts2[1], parts2[0]);
+            list.add(curr);
+            noOfTasks++;
+
+            System.out.println(horizontal_lines);
+            System.out.println("Got it. I've added this task:");
+            System.out.println(curr.returnStatus());
+            System.out.println("Now you have " + noOfTasks + " tasks in the list.");
+            System.out.println(horizontal_lines);
+            return;
+        }
+
+        if (input.startsWith("event")){
+            String[] parts1 = input.split(" ", 2);
+            String[] parts2 = parts1[1].split(" /from ", 2);
+            String[] parts3 = parts2[1].split(" /to ");
+
+            Event curr = new Event(parts3[0], parts3[1], parts2[0]);
+            list.add(curr);
+            noOfTasks++;
+
+            System.out.println(horizontal_lines);
+            System.out.println("Got it. I've added this task:");
+            System.out.println(curr.returnStatus());
+            System.out.println("Now you have " + noOfTasks + " tasks in the list.");
+            System.out.println(horizontal_lines);
+            return;
+        }
+
+        throw new BenException("I'm sorry, but I don't know what that means :-(");
+    }
+    
     // For greeting
     private static void printGreeting(){
         System.out.println(horizontal_lines);
