@@ -9,7 +9,7 @@ public class Ben {
 
         // Have a new scanner
         Scanner scanner = new Scanner(System.in);
-        ArrayList<String> toDo = new ArrayList<>(100);
+        ArrayList<Task> toDo = new ArrayList<>(100);
 
         recordTasks(scanner, toDo);
         bidFarewell();
@@ -19,7 +19,7 @@ public class Ben {
 
 
     // echos prints messages to the screen
-    private static void recordTasks(Scanner s, ArrayList<String> list){
+    private static void recordTasks(Scanner s, ArrayList<Task> list){
         while (true) {
             // scans the entire line
             String input = s.nextLine();
@@ -29,20 +29,50 @@ public class Ben {
                 break;
             }
 
+            // prints the list
             if (input.equals("list")) {
                 System.out.println(horizontal_lines);
+                System.out.println("Here are the tasks in your list:");
 
                 for (int i = 0; i < list.size(); i++) {
-                    String curr = list.get(i);
-                    System.out.println((i + 1) + ". " + curr);
+                    Task curr = list.get(i);
+                    System.out.println((i + 1) + "." + curr.returnStatus());
                 }
 
+                System.out.println(horizontal_lines);
+                continue;
+            }read
+
+            if (input.startsWith("mark")){
+                String[] parts = input.split(" ");
+                // cater to 0 indexed array list
+                int index = Integer.parseInt(parts[1]) - 1;
+                // get task
+                Task curr = list.get(index);
+
+                curr.markAsDone();
+                System.out.println(horizontal_lines);
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println(curr.returnStatus());
+                System.out.println(horizontal_lines);
+                continue;
+            }
+
+            if (input.startsWith("unmark")){
+                String[] parts = input.split(" ");
+                int index = Integer.parseInt(parts[1]) - 1;
+                Task curr = list.get(index);
+
+                curr.unMarkAsDone();
+                System.out.println(horizontal_lines);
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println(curr.returnStatus());
                 System.out.println(horizontal_lines);
                 continue;
             }
 
             // else add input to list
-            list.add(input);
+            list.add(new Task(input));
             System.out.println(horizontal_lines);
             System.out.println("added: " + input);
             System.out.println(horizontal_lines);
