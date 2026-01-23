@@ -151,9 +151,24 @@ public class Ben {
             return;
         }
 
+        if (input.startsWith("delete")){
+            String[] parts = input.split(" ");
+            int index = Integer.parseInt(parts[1]) - 1;
+            Task curr = list.get(index);
+            list.remove(index);
+            noOfTasks--;
+
+            System.out.println(horizontal_lines);
+            System.out.println("Noted. I've removed this task:");
+            System.out.println(curr.returnStatus());
+            System.out.println("Now you have " + noOfTasks + " tasks in the list.");
+            System.out.println(horizontal_lines);
+            return;
+        }
+
         throw new BenException("I'm sorry, but I don't know what that means :-(");
     }
-    
+
     // For greeting
     private static void printGreeting(){
         System.out.println(horizontal_lines);
