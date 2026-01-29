@@ -1,10 +1,22 @@
+package ben;
+
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.IOException;
 
+/**
+ * Represents the main entry point of Ben the chatbot.
+ *
+ */
 public class Ben {
     public static final String horizontal_lines = "----------------------------------------";
     public static int noOfTasks = 0;
 
+    /**
+     * Starts Ben the chatbot and initialises the required objects.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         printGreeting();
 
@@ -12,7 +24,18 @@ public class Ben {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> list = new ArrayList<>(100);
 
-        recordTasks(scanner, list);
+        Storage storage = new Storage("data/ben.txt");
+
+        try {
+            for (String line : storage.load()) {
+                list.add(Task.fromStringToTask(line));
+                noOfTasks++;
+            }
+        } catch (IOException | BenException e) {
+            System.out.println("Failed to load saved tasks!");
+        }
+
+        recordTasks(scanner, list, storage);
         bidFarewell();
         System.out.println(horizontal_lines);
         scanner.close();
@@ -20,13 +43,13 @@ public class Ben {
 
 
     // echos prints messages to the screen
-    private static void recordTasks(Scanner s, ArrayList<Task> list){
+    private static void recordTasks(Scanner s, ArrayList<Task> list, Storage storage){
         while (true) {
             // scans the entire line
             String input = s.nextLine();
 
             try {
-                processLine(input, list);
+                processLine(input, list, storage);
             } catch (BenException e){
                 if (e.getMessage().equals("EXIT")){
                     System.out.println(horizontal_lines);
@@ -40,7 +63,7 @@ public class Ben {
         }
     }
 
-    private static void processLine(String input, ArrayList<Task> list) throws BenException {
+    private static void processLine(String input, ArrayList<Task> list, Storage storage) throws BenException {
 
         if (input.equals("bye")) {
             throw new BenException("EXIT"); // special signal
@@ -72,6 +95,7 @@ public class Ben {
             Task curr = list.get(index);
 
             curr.markAsDone();
+            saveTasks(storage, list);
             System.out.println(horizontal_lines);
             System.out.println("Nice! I've marked this task as done:");
             System.out.println(curr.returnStatus());
@@ -89,6 +113,7 @@ public class Ben {
             Task curr = list.get(index);
 
             curr.unMarkAsDone();
+            saveTasks(storage, list);
             System.out.println(horizontal_lines);
             System.out.println("OK, I've marked this task as not done yet:");
             System.out.println(curr.returnStatus());
@@ -105,6 +130,7 @@ public class Ben {
 
             ToDo curr = new ToDo(parts[1]);
             list.add(curr);
+            saveTasks(storage, list);
             noOfTasks++;
 
             System.out.println(horizontal_lines);
@@ -124,6 +150,7 @@ public class Ben {
             String[] parts2 = parts1[1].split(" /by ");
             Deadline curr = new Deadline(parts2[1], parts2[0]);
             list.add(curr);
+            saveTasks(storage, list);
             noOfTasks++;
 
             System.out.println(horizontal_lines);
@@ -141,6 +168,7 @@ public class Ben {
 
             Event curr = new Event(parts3[0], parts3[1], parts2[0]);
             list.add(curr);
+            saveTasks(storage, list);
             noOfTasks++;
 
             System.out.println(horizontal_lines);
@@ -156,6 +184,7 @@ public class Ben {
             int index = Integer.parseInt(parts[1]) - 1;
             Task curr = list.get(index);
             list.remove(index);
+            saveTasks(storage, list);
             noOfTasks--;
 
             System.out.println(horizontal_lines);
@@ -182,6 +211,18 @@ public class Ben {
         System.out.println(horizontal_lines);
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(horizontal_lines);
+    }
+
+    private static void saveTasks(Storage storage, ArrayList<Task> list) {
+        try {
+            ArrayList<String> lines = new ArrayList<>();
+            for (Task task : list) {
+                lines.add(task.fromTaskToString());
+            }
+            storage.save(lines);
+        } catch (IOException e) {
+            System.out.println("Failed to save tasks to file");
+        }
     }
 
 }
