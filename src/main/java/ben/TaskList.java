@@ -1,8 +1,8 @@
 package ben;
 
 import java.util.ArrayList;
-import ben.Ui;
-import ben.Task;
+
+import ben.task.Task;
 
 public class TaskList {
     private ArrayList<Task> tasks;

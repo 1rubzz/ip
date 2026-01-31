@@ -1,10 +1,10 @@
-package ben;
+package ben.task;
 
 /**
  * Represents a task that occurs over a certain time period.
  *
  */
-public class Event extends Task{
+public class Event extends Task {
     private String startTime;
     private String endTime;
 

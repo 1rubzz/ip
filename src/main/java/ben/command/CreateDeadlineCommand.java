@@ -1,6 +1,8 @@
 package ben.command;
 
 import ben.*;
+import ben.task.Deadline;
+import ben.task.Task;
 
 public class CreateDeadlineCommand extends Command {
 

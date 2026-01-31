@@ -1,10 +1,10 @@
-package ben;
+package ben.task;
 
 /**
  * Represents a simple task without any associated date or time.
  *
  */
-public class ToDo extends Task{
+public class ToDo extends Task {
 
     /**
      * Creates a to-do task with a specified description.

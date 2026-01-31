@@ -1,4 +1,6 @@
-package ben;
+package ben.task;
+
+import ben.BenException;
 
 /**
  * Represents a basic task with a description and completion status.

@@ -1,4 +1,6 @@
-package ben;
+package ben.task;
+
+import ben.BenException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -7,7 +9,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a task with a specified deadline
  *
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     private LocalDate due;
 
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -19,7 +21,7 @@ public class Deadline extends Task{
      * @param date String due date of the task.
      * @param description String description of the task.
      */
-    public Deadline(String date, String description) throws BenException{
+    public Deadline(String date, String description) throws BenException {
         super(description);
         try {
             this.due = LocalDate.parse(date, INPUT_FORMAT);

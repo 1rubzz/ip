@@ -1,6 +1,7 @@
 package ben.command;
 
 import ben.*;
+import ben.task.Task;
 
 public class MarkCommand extends Command {
     private final int index;

@@ -4,7 +4,7 @@ import ben.BenException;
 import ben.Storage;
 import ben.TaskList;
 import ben.Ui;
-import ben.Task;
+import ben.task.Task;
 
 public class ListCommand extends Command {
 
