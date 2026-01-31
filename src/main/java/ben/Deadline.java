@@ -13,7 +13,7 @@ public class Deadline extends Task{
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
-    /**
+    /**wait
      * Creates a deadline task with a specified string deadline and description.
      *
      * @param date String due date of the task.

@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
 
@@ -42,12 +43,14 @@ public class Storage {
      * @return List of lines from the data file.
      * @throws IOException If reading fails.
      */
-    public List<String> load() throws IOException {
+    public ArrayList<String> load() throws IOException, BenException {
         if (!Files.exists(filePath)) {
             // return an empty list
-            return List.of();
+            ArrayList<String> list = new ArrayList<>();
+            return list;
         }
-        return Files.readAllLines(filePath);
+        ArrayList<String> list = new ArrayList<>(Files.readAllLines(filePath));
+        return list;
     }
 
 }
