@@ -1,0 +1,81 @@
+package ben;
+
+import ben.command.*;
+
+/**
+ * Deciphers and pieces apart the input.
+ *
+ */
+public class Parser {
+
+    private static final String horizontal_lines = "----------------------------------------";
+
+    public static Command parse(String fullCommand) throws BenException {
+        if (fullCommand.equals("bye")) {
+            return new FareWellCommand();
+        }
+
+        if (fullCommand.equals("list")) {
+            return new ListCommand();
+        }
+
+        if (fullCommand.startsWith("mark")) {
+            String[] parts = fullCommand.split(" ");
+            if (parts.length != 2) {
+                throw new BenException("Please specify which task to mark.");
+            }
+
+            // cater to 0 indexed array list
+            int index = Integer.parseInt(parts[1]) - 1;
+            return new MarkCommand(index);
+        }
+
+        if (fullCommand.startsWith("unmark")) {
+            String[] parts = fullCommand.split(" ");
+            if (parts.length != 2) {
+                throw new BenException("Please specify which task to mark.");
+            }
+
+            // cater to 0 indexed array list
+            int index = Integer.parseInt(parts[1]) - 1;
+            return new UnMarkCommand(index);
+        }
+
+        if (fullCommand.startsWith("todo")) {
+            String[] parts = fullCommand.split(" ", 2);
+            if (parts.length < 2 || parts[1].isBlank()) {
+                throw new BenException("The description of a todo task cannot be empty.");
+            }
+            return new CreateToDoCommand(parts[1]);
+        }
+
+        if (fullCommand.startsWith("deadline")) {
+            String[] parts1 = fullCommand.split(" ", 2);
+            if (parts1.length < 2){
+                throw new BenException("The description of a deadline task cannot be empty.");
+            }
+
+            String[] parts2 = parts1[1].split(" /by ");
+            return new CreateDeadlineCommand(parts2[1], parts2[0]);
+        }
+
+        if (fullCommand.startsWith("event")) {
+            String[] parts1 = fullCommand.split(" ", 2);
+            String[] parts2 = parts1[1].split(" /from ", 2);
+            String[] parts3 = parts2[1].split(" /to ");
+
+            return new CreateEventCommand(parts3[0], parts3[1], parts2[0]);
+        }
+
+        if (fullCommand.startsWith("delete")) {
+            String[] parts = fullCommand.split(" ");
+            int index = Integer.parseInt(parts[1]) - 1;
+
+            return new DeleteCommand(index);
+        }
+
+        throw new BenException("I'm sorry, but I don't know what that means :-(");
+
+    }
+
+}
