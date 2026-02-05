@@ -1,14 +1,14 @@
 package ben;
 
 import ben.command.Command;
+import ben.command.CreateDeadlineCommand;
+import ben.command.CreateEventCommand;
+import ben.command.CreateToDoCommand;
+import ben.command.DeleteCommand;
 import ben.command.FareWellCommand;
 import ben.command.ListCommand;
 import ben.command.MarkCommand;
 import ben.command.UnMarkCommand;
-import ben.command.CreateToDoCommand;
-import ben.command.CreateDeadlineCommand;
-import ben.command.CreateEventCommand;
-import ben.command.DeleteCommand;
 
 /**
  * Parses user input and creates the corresponding command.
@@ -65,7 +65,7 @@ public class Parser {
 
         if (fullCommand.startsWith("deadline")) {
             String[] parts1 = fullCommand.split(" ", 2);
-            if (parts1.length < 2){
+            if (parts1.length < 2) {
                 throw new BenException("The description of a deadline task cannot be empty.");
             }
 

@@ -1,9 +1,9 @@
 package ben.command;
 
+import ben.BenException;
+import ben.Storage;
 import ben.TaskList;
 import ben.Ui;
-import ben.Storage;
-import ben.BenException;
 import ben.task.Deadline;
 import ben.task.Task;
 
@@ -18,7 +18,7 @@ public class CreateDeadlineCommand extends Command {
     /**
      * Creates a command that adds a deadline task.
      *
-     * @param date Date of the deadline.
+     * @param date        Date of the deadline.
      * @param description Description of the task.
      */
     public CreateDeadlineCommand(String date, String description) {
@@ -29,8 +29,8 @@ public class CreateDeadlineCommand extends Command {
     /**
      * Executes the command to create and add a deadline task.
      *
-     * @param tasks Task list containing all current tasks.
-     * @param ui User interface used to display messages.
+     * @param tasks   Task list containing all current tasks.
+     * @param ui      User interface used to display messages.
      * @param storage Storage used to load and save tasks.
      * @throws BenException If an error occurs during execution.
      */

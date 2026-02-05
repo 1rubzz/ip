@@ -1,9 +1,9 @@
 package ben.task;
 
-import ben.BenException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import ben.BenException;
 
 /**
  * Represents a task with a specified deadline
@@ -17,7 +17,7 @@ public class Deadline extends Task {
     /**
      * Creates a deadline task with the given date and description.
      *
-     * @param date String due date of the task.
+     * @param date        String due date of the task.
      * @param description Description of the task.
      * @throws BenException If the date format is invalid.
      */
@@ -36,7 +36,7 @@ public class Deadline extends Task {
      * @return String representation of the task status.
      */
     @Override
-    public String returnStatus(){
+    public String returnStatus() {
         return "[D]" + "[" + super.getStatusIcon() + "] " + super.getDescription() + " (by: " + due.format(OUTPUT_FORMAT) + ")";
     }
 
@@ -46,7 +46,7 @@ public class Deadline extends Task {
      * @return String representation of the task for saving.
      */
     @Override
-    public String fromTaskToString(){
+    public String fromTaskToString() {
         // Save to file data using input format and only use output format for printing.
         return "D | " + (super.isDone() ? 1 : 0) + " | " + super.getDescription() + " | " + due.format(INPUT_FORMAT);
     }

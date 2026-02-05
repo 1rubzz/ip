@@ -1,9 +1,9 @@
 package ben.command;
 
+import ben.BenException;
+import ben.Storage;
 import ben.TaskList;
 import ben.Ui;
-import ben.Storage;
-import ben.BenException;
 import ben.task.Task;
 
 /**
@@ -25,8 +25,8 @@ public class DeleteCommand extends Command {
     /**
      * Executes the command to remove a task from the task list.
      *
-     * @param tasks Task list containing all current tasks.
-     * @param ui User interface used to display messages.
+     * @param tasks   Task list containing all current tasks.
+     * @param ui      User interface used to display messages.
      * @param storage Storage used to load and save tasks.
      * @throws BenException If an error occurs during execution.
      */

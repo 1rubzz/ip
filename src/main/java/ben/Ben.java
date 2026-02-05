@@ -1,10 +1,8 @@
 package ben;
 
-import ben.command.Command;
-
-import java.util.Scanner;
-import java.util.ArrayList;
 import java.io.IOException;
+
+import ben.command.Command;
 
 /**
  * Represents the main entry point of the Ben chatbot application.

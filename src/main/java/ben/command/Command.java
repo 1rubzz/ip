@@ -1,12 +1,12 @@
 package ben.command;
 
-import ben.TaskList;
-import ben.Ui;
-import ben.Storage;
-import ben.BenException;
-
 import java.io.IOException;
 import java.util.ArrayList;
+
+import ben.BenException;
+import ben.Storage;
+import ben.TaskList;
+import ben.Ui;
 
 
 /**
@@ -18,8 +18,8 @@ public abstract class Command {
     /**
      * Executes the command.
      *
-     * @param tasks Task list containing all current tasks.
-     * @param ui User interface used to display messages.
+     * @param tasks   Task list containing all current tasks.
+     * @param ui      User interface used to display messages.
      * @param storage Storage used to load and save tasks.
      * @throws BenException If an error occurs during execution.
      */
@@ -38,7 +38,7 @@ public abstract class Command {
      * Saves the current list of tasks to the data file.
      *
      * @param storage Storage responsible for writing data to the file.
-     * @param list Task list containing the tasks to be saved.
+     * @param list    Task list containing the tasks to be saved.
      */
     public static void saveTasks(Storage storage, TaskList list) {
         try {

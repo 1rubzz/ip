@@ -1,10 +1,11 @@
 package ben.command;
 
 // Do not use any wildcards for imports
+
+import ben.BenException;
+import ben.Storage;
 import ben.TaskList;
 import ben.Ui;
-import ben.Storage;
-import ben.BenException;
 import ben.task.Task;
 
 /**
@@ -25,8 +26,8 @@ public class MarkCommand extends Command {
     /**
      * Executes the command to mark a task as completed.
      *
-     * @param tasks Task list containing all current tasks.
-     * @param ui User interface used to display messages.
+     * @param tasks   Task list containing all current tasks.
+     * @param ui      User interface used to display messages.
      * @param storage Storage used to load and save tasks.
      * @throws BenException If an error occurs during execution.
      */

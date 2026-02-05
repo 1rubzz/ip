@@ -14,7 +14,7 @@ public class Task {
      *
      * @param description Description of the task.
      */
-    public Task(String description){
+    public Task(String description) {
         this.isDone = false;
         this.description = description;
     }
@@ -22,24 +22,25 @@ public class Task {
     /**
      * Marks this task as completed.
      */
-    public void markAsDone(){
+    public void markAsDone() {
         this.isDone = true;
     }
 
     /**
      * Marks this task as not completed.
      */
-    public void unMarkAsDone(){
+    public void unMarkAsDone() {
         this.isDone = false;
     }
 
     // getters
+
     /**
      * Returns the description of this task.
      *
      * @return Description of the task.
      */
-    public String getDescription(){
+    public String getDescription() {
         return this.description;
     }
 
@@ -48,7 +49,7 @@ public class Task {
      *
      * @return Completion status of the task.
      */
-    public Boolean isDone(){
+    public Boolean isDone() {
         return this.isDone;
     }
 
@@ -66,7 +67,7 @@ public class Task {
      *
      * @return String representation of the task status.
      */
-    public String returnStatus(){
+    public String returnStatus() {
         return "[" + this.getStatusIcon() + "] " + this.getDescription();
     }
 
@@ -80,33 +81,33 @@ public class Task {
     public static Task fromStringToTask(String line) throws BenException {
         String[] parts = line.split(" \\| ");
 
-        switch (parts[0]){
-            case "T": {
-                Task todo = new ToDo(parts[2]);
-                if (parts[1].equals("1")) {
-                    todo.markAsDone();
-                }
-                return todo;
+        switch (parts[0]) {
+        case "T": {
+            Task todo = new ToDo(parts[2]);
+            if (parts[1].equals("1")) {
+                todo.markAsDone();
             }
+            return todo;
+        }
 
-            case "D": {
-                Task deadline = new Deadline(parts[3], parts[2]);
-                if (parts[1].equals("1")) {
-                    deadline.markAsDone();
-                }
-                return deadline;
+        case "D": {
+            Task deadline = new Deadline(parts[3], parts[2]);
+            if (parts[1].equals("1")) {
+                deadline.markAsDone();
             }
+            return deadline;
+        }
 
-            case "E": {
-                Task event = new Event(parts[3], parts[4], parts[2]);
-                if (parts[1].equals("1")) {
-                    event.markAsDone();
-                }
-                return event;
+        case "E": {
+            Task event = new Event(parts[3], parts[4], parts[2]);
+            if (parts[1].equals("1")) {
+                event.markAsDone();
             }
+            return event;
+        }
 
-            default:
-                throw new BenException("Corrupted file data!");
+        default:
+            throw new BenException("Corrupted file data!");
         }
     }
 

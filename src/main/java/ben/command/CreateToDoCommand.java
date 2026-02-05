@@ -1,16 +1,16 @@
 package ben.command;
 
+import ben.BenException;
+import ben.Storage;
 import ben.TaskList;
 import ben.Ui;
-import ben.Storage;
-import ben.BenException;
 import ben.task.Task;
 import ben.task.ToDo;
 
 /**
  * Represents a command that creates a todo task.
  */
-public class CreateToDoCommand extends Command{
+public class CreateToDoCommand extends Command {
 
     private final String description;
 
@@ -26,8 +26,8 @@ public class CreateToDoCommand extends Command{
     /**
      * Executes the command to create and add a todo task.
      *
-     * @param tasks Task list containing all current tasks.
-     * @param ui User interface used to display messages.
+     * @param tasks   Task list containing all current tasks.
+     * @param ui      User interface used to display messages.
      * @param storage Storage used to load and save tasks.
      * @throws BenException If an error occurs during execution.
      */

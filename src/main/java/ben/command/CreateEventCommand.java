@@ -1,9 +1,9 @@
 package ben.command;
 
+import ben.BenException;
+import ben.Storage;
 import ben.TaskList;
 import ben.Ui;
-import ben.Storage;
-import ben.BenException;
 import ben.task.Event;
 import ben.task.Task;
 
@@ -20,8 +20,8 @@ public class CreateEventCommand extends Command {
     /**
      * Creates a command that adds an event task.
      *
-     * @param startTime Start time of the event.
-     * @param endTime End time of the event.
+     * @param startTime   Start time of the event.
+     * @param endTime     End time of the event.
      * @param description Description of the task.
      */
     public CreateEventCommand(String startTime, String endTime, String description) {
@@ -33,8 +33,8 @@ public class CreateEventCommand extends Command {
     /**
      * Executes the command to create and add an event task.
      *
-     * @param tasks Task list containing all current tasks.
-     * @param ui User interface used to display messages.
+     * @param tasks   Task list containing all current tasks.
+     * @param ui      User interface used to display messages.
      * @param storage Storage used to load and save tasks.
      * @throws BenException If an error occurs during execution.
      */
