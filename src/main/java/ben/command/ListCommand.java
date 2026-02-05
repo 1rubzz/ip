@@ -6,8 +6,19 @@ import ben.TaskList;
 import ben.Ui;
 import ben.task.Task;
 
+/**
+ * Represents a command that lists all tasks.
+ */
 public class ListCommand extends Command {
 
+    /**
+     * Executes the command to display all tasks in the task list.
+     *
+     * @param tasks Task list containing all current tasks.
+     * @param ui User interface used to display messages.
+     * @param storage Storage used to load and save tasks.
+     * @throws BenException If an error occurs during execution.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BenException {
         ui.showLine();

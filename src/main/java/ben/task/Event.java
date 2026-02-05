@@ -21,11 +21,21 @@ public class Event extends Task {
         this.endTime = endTime;
     }
 
+    /**
+     * Returns the formatted status of the event task.
+     *
+     * @return String representation of the task status.
+     */
     @Override
     public String returnStatus(){
         return "[E]" + "[" + super.getStatusIcon() + "] " + super.getDescription() + " (from: " + this.startTime + " to: " + this.endTime + ")";
     }
 
+    /**
+     * Converts the task into a string format suitable for file storage.
+     *
+     * @return String representation of the task for saving.
+     */
     @Override
     public String fromTaskToString(){
         return "E | " + (super.isDone() ? 1 : 0) + " | " + super.getDescription() + " | " + startTime + " | " + endTime;

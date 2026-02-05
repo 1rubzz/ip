@@ -1,15 +1,29 @@
 package ben;
 
-import ben.command.*;
+import ben.command.Command;
+import ben.command.FareWellCommand;
+import ben.command.ListCommand;
+import ben.command.MarkCommand;
+import ben.command.UnMarkCommand;
+import ben.command.CreateToDoCommand;
+import ben.command.CreateDeadlineCommand;
+import ben.command.CreateEventCommand;
+import ben.command.DeleteCommand;
 
 /**
- * Deciphers and pieces apart the input.
- *
+ * Parses user input and creates the corresponding command.
  */
 public class Parser {
 
     private static final String horizontal_lines = "----------------------------------------";
 
+    /**
+     * Parses the given input string and returns the corresponding command.
+     *
+     * @param fullCommand User input entered by the user.
+     * @return Command corresponding to the user input.
+     * @throws BenException If the input is invalid or cannot be parsed.
+     */
     public static Command parse(String fullCommand) throws BenException {
         if (fullCommand.equals("bye")) {
             return new FareWellCommand();

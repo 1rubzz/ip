@@ -4,16 +4,15 @@ import ben.BenException;
 
 /**
  * Represents a basic task with a description and completion status.
- *
  */
 public class Task {
     private Boolean isDone;
     private String description;
 
     /**
-     * Creates a task with a specified description.
+     * Creates a task with the specified description.
      *
-     * @param description
+     * @param description Description of the task.
      */
     public Task(String description){
         this.isDone = false;
@@ -22,36 +21,39 @@ public class Task {
 
     /**
      * Marks this task as completed.
-     *
      */
     public void markAsDone(){
         this.isDone = true;
     }
 
     /**
-     * Marks this task and incomplete.
-     *
+     * Marks this task as not completed.
      */
     public void unMarkAsDone(){
         this.isDone = false;
     }
 
     // getters
+    /**
+     * Returns the description of this task.
+     *
+     * @return Description of the task.
+     */
     public String getDescription(){
         return this.description;
     }
 
     /**
-     * Returns the completion status of this task.
+     * Returns whether this task is completed.
      *
-     * @return Completion status.
+     * @return Completion status of the task.
      */
     public Boolean isDone(){
         return this.isDone;
     }
 
     /**
-     * Returns status icon corresponding to this task's completion status.
+     * Returns the status icon of this task.
      *
      * @return Status icon.
      */
@@ -60,20 +62,20 @@ public class Task {
     }
 
     /**
-     * Returns the String comprising of this task's status and description.
+     * Returns the formatted status of this task.
      *
-     * @return String of task's status and description.
+     * @return String representation of the task status.
      */
     public String returnStatus(){
         return "[" + this.getStatusIcon() + "] " + this.getDescription();
     }
 
     /**
-     * Converts a line from the data file to a task object.
+     * Converts a line from the data file into a task object.
      *
-     * @param line Line from data file.
-     * @return Task that matches the line.
-     * @throws BenException If corrupted data file is detected.
+     * @param line Line from the data file.
+     * @return Task that matches the given line.
+     * @throws BenException If corrupted data is detected.
      */
     public static Task fromStringToTask(String line) throws BenException {
         String[] parts = line.split(" \\| ");
@@ -109,9 +111,9 @@ public class Task {
     }
 
     /**
-     * Converts the task object to a string for saving to data file.
+     * Converts this task into a string format suitable for file storage.
      *
-     * @return String message corresponding to each type of tasks.
+     * @return String representation of the task for saving.
      */
     public String fromTaskToString() {
         return ""; // No useful implementation here

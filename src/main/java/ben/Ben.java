@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.io.IOException;
 
 /**
- * Represents the main entry point of Ben the chatbot.
- *
+ * Represents the main entry point of the Ben chatbot application.
  */
 public class Ben {
 
@@ -19,6 +18,11 @@ public class Ben {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Creates a Ben chatbot instance using the given file path.
+     *
+     * @param filePath File path used to load and save task data.
+     */
     public Ben(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -30,6 +34,9 @@ public class Ben {
         noOfTasks = tasks.getNoOfTasks();
     }
 
+    /**
+     * Runs the main program loop of the chatbot.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -49,9 +56,9 @@ public class Ben {
     }
 
     /**
+     * Starts the Ben chatbot application.
      *
-     *
-     * @param args
+     * @param args Command-line arguments.
      */
     public static void main(String[] args) {
         new Ben("data/tasks.txt").run();
