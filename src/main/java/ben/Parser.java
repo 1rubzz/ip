@@ -6,6 +6,7 @@ import ben.command.CreateEventCommand;
 import ben.command.CreateToDoCommand;
 import ben.command.DeleteCommand;
 import ben.command.FareWellCommand;
+import ben.command.FindCommand;
 import ben.command.ListCommand;
 import ben.command.MarkCommand;
 import ben.command.UnMarkCommand;
@@ -87,6 +88,20 @@ public class Parser {
 
             return new DeleteCommand(index);
         }
+
+        // Level 9: Find
+        // make sure that it is one object to find
+        if (fullCommand.startsWith("find")) {
+            String[] parts = fullCommand.split(" ", 2);
+
+            if (parts.length < 2 || parts[1].isBlank()) {
+                throw new BenException("Please provide a keyword to find.");
+            }
+
+            return new FindCommand(parts[1]);
+        }
+
+
 
         throw new BenException("I'm sorry, but I don't know what that means :-(");
 

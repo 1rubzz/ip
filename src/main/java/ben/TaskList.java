@@ -76,4 +76,15 @@ public class TaskList {
         this.tasks.remove(index);
     }
 
+    // Level 9: Find
+    /**
+     * Returns the list of tasks currently stored in this task list.
+     *
+     * @return An arrayList containing all tasks.
+     */
+    public ArrayList<Task> getTasks() {
+        return this.tasks;
+    }
+
+
 }
