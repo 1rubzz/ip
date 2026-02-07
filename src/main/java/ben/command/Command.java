@@ -47,7 +47,6 @@ public abstract class Command {
                 lines.add(list.get(i).fromTaskToString());
             }
             storage.save(lines);
-            // catch
         } catch (IOException e) {
             System.out.println("Failed to save tasks to file");
         }
