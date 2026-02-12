@@ -9,7 +9,7 @@ import ben.command.Command;
  */
 public class Ben {
 
-    public static final String horizontal_lines = "----------------------------------------";
+    public static final String HORIZONTAL_LINES = "----------------------------------------";
     private int noOfTasks = 0;
 
     private Storage storage;
@@ -30,6 +30,10 @@ public class Ben {
             this.tasks = new TaskList();
         }
         noOfTasks = tasks.getNoOfTasks();
+    }
+
+    public Ben() {
+        this("data/ben.txt"); // use your actual default file path
     }
 
     /**
@@ -60,6 +64,18 @@ public class Ben {
      */
     public static void main(String[] args) {
         new Ben("data/tasks.txt").run();
+    }
+
+    public String getResponse(String input) {
+        Ui ui = new Ui();
+
+        try {
+            Command c = Parser.parse(input);
+            c.execute(tasks, ui, storage);
+            return ui.getOutput();
+        } catch (BenException e) {
+            return e.getMessage();
+        }
     }
 
 }
