@@ -41,6 +41,10 @@ public abstract class Command {
      * @param list    Task list containing the tasks to be saved.
      */
     public static void saveTasks(Storage storage, TaskList list) {
+
+        assert storage != null : "Storage should not be null";
+        assert list != null : "TaskList should not be null";
+
         try {
             ArrayList<String> lines = new ArrayList<>();
             for (int i = 0; i < list.size(); i++) {

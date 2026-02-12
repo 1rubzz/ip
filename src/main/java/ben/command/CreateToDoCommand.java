@@ -20,6 +20,9 @@ public class CreateToDoCommand extends Command {
      * @param description Description of the task.
      */
     public CreateToDoCommand(String description) {
+        assert description != null : "Description cannot be null";
+        assert !description.trim().isEmpty() : "Description cannot be empty";
+
         this.description = description;
     }
 
@@ -33,6 +36,10 @@ public class CreateToDoCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BenException {
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
+
         Task curr = new ToDo(description);
         tasks.add(curr);
         Command.saveTasks(storage, tasks);

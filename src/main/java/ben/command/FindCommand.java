@@ -32,6 +32,11 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
+
         ui.showLine();
         ui.showMessage("Here are the matching tasks in your list:");
 

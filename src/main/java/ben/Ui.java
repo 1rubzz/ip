@@ -51,6 +51,7 @@ public class Ui {
      * @param message Message to be displayed.
      */
     public void showMessage(String message) {
+        assert message != null : "Message should not be null";
         output.append(message).append("\n");
     }
 

@@ -20,6 +20,7 @@ public class MarkCommand extends Command {
      * @param index Index of the task to be marked.
      */
     public MarkCommand(int index) {
+        assert index >= 0 : "Index must be non-negative";
         this.index = index;
     }
 
@@ -33,6 +34,11 @@ public class MarkCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BenException {
+
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
+
         Task curr = tasks.get(index);
         curr.markAsDone();
         Command.saveTasks(storage, tasks);

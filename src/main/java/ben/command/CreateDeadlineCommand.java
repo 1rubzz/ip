@@ -22,6 +22,11 @@ public class CreateDeadlineCommand extends Command {
      * @param description Description of the task.
      */
     public CreateDeadlineCommand(String date, String description) {
+        assert date != null : "Date cannot be null";
+        assert description != null : "Description cannot be null";
+        assert !description.trim().isEmpty() : "Description cannot be empty";
+        assert !date.trim().isEmpty() : "Date cannot be empty";
+
         this.date = date;
         this.description = description;
     }
@@ -36,6 +41,10 @@ public class CreateDeadlineCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BenException {
+        assert tasks != null;
+        assert ui != null;
+        assert storage != null;
+
         Task curr = new Deadline(this.date, this.description);
         tasks.add(curr);
         Command.saveTasks(storage, tasks);
