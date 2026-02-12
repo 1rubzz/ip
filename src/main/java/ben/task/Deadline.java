@@ -9,10 +9,11 @@ import ben.BenException;
  * Represents a task with a specified deadline
  */
 public class Deadline extends Task {
-    private LocalDate due;
 
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
+
+    private LocalDate due;
 
     /**
      * Creates a deadline task with the given date and description.
@@ -37,7 +38,8 @@ public class Deadline extends Task {
      */
     @Override
     public String returnStatus() {
-        return "[D]" + "[" + super.getStatusIcon() + "] " + super.getDescription() + " (by: " + due.format(OUTPUT_FORMAT) + ")";
+        return "[D]" + "[" + super.getStatusIcon() + "] " + super.getDescription()
+                + " (by: " + due.format(OUTPUT_FORMAT) + ")";
     }
 
     /**

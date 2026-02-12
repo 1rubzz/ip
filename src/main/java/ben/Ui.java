@@ -8,15 +8,16 @@ import java.util.Scanner;
 public class Ui {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String horizontal_lines = "----------------------------------------";
+    private StringBuilder output = new StringBuilder();
 
     /**
      * Displays the welcome message.
      */
     public void showWelcome() {
-        System.out.println(horizontal_lines);
-        System.out.println("Hello! I'm Ben");
-        System.out.println("What can I do for you?");
-        System.out.println(horizontal_lines);
+        output.append(horizontal_lines).append("\n");
+        output.append("Hello! I'm Ben\n");
+        output.append("What can I do for you?\n");
+        output.append(horizontal_lines).append("\n");
     }
 
     /**
@@ -32,16 +33,16 @@ public class Ui {
      * Displays a horizontal line separator.
      */
     public void showLine() {
-        System.out.println(horizontal_lines);
+        output.append(horizontal_lines).append("\n");
     }
 
     /**
      * Displays the farewell message.
      */
     public void bidFarewell() {
-        System.out.println(horizontal_lines);
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(horizontal_lines);
+        output.append(horizontal_lines).append("\n");
+        output.append("Bye. Hope to see you again soon!\n");
+        output.append(horizontal_lines).append("\n");
     }
 
     /**
@@ -50,7 +51,7 @@ public class Ui {
      * @param message Message to be displayed.
      */
     public void showMessage(String message) {
-        System.out.println(message);
+        output.append(message).append("\n");
     }
 
     /**
@@ -59,5 +60,13 @@ public class Ui {
      * @param message Error message to be displayed.
      */
     public static void showError(String message) {
+        // You may optionally implement this similarly if needed
+    }
+
+    /**
+     * Returns the accumulated output.
+     */
+    public String getOutput() {
+        return output.toString();
     }
 }

@@ -1,11 +1,9 @@
 package ben.command;
 
+import ben.Storage;
 import ben.TaskList;
 import ben.Ui;
-import ben.Storage;
 import ben.task.Task;
-
-import java.util.ArrayList;
 
 /**
  * Represents a command that finds tasks whose descriptions contain
