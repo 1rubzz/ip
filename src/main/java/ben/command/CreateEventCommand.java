@@ -25,6 +25,15 @@ public class CreateEventCommand extends Command {
      * @param description Description of the task.
      */
     public CreateEventCommand(String startTime, String endTime, String description) {
+
+        assert startTime != null : "Start time cannot be null";
+        assert endTime != null : "End time cannot be null";
+        assert description != null : "Description cannot be null";
+
+        assert !startTime.trim().isEmpty() : "Start time cannot be empty";
+        assert !endTime.trim().isEmpty() : "End time cannot be empty";
+        assert !description.trim().isEmpty() : "Description cannot be empty";
+
         this.startTime = startTime;
         this.endTime = endTime;
         this.description = description;
@@ -40,6 +49,10 @@ public class CreateEventCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BenException {
+        assert tasks != null;
+        assert ui != null;
+        assert storage != null;
+
         Task curr = new Event(this.startTime, this.endTime, this.description);
         tasks.add(curr);
         Command.saveTasks(storage, tasks);

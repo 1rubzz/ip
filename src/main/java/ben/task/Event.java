@@ -16,6 +16,10 @@ public class Event extends Task {
      * @param description Description of the event.
      */
     public Event(String startTime, String endTime, String description) {
+        assert startTime != null : "Event start time should not be null";
+        assert endTime != null : "Event end time should not be null";
+        assert description != null : "Event description should not be null";
+
         super(description);
         this.startTime = startTime;
         this.endTime = endTime;

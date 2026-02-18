@@ -23,6 +23,11 @@ public class Deadline extends Task {
      * @throws BenException If the date format is invalid.
      */
     public Deadline(String date, String description) throws BenException {
+        assert date != null : "Deadline date should not be null";
+        assert description != null : "Deadline description should not be null";
+        assert !date.trim().isEmpty() : "Deadline date should not be empty";
+        assert !description.trim().isEmpty() : "Deadline description should not be empty";
+
         super(description);
         try {
             this.due = LocalDate.parse(date, INPUT_FORMAT);

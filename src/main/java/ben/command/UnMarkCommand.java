@@ -19,6 +19,7 @@ public class UnMarkCommand extends Command {
      * @param index Index of the task to be unmarked.
      */
     public UnMarkCommand(int index) {
+        assert index >= 0 : "Index must be non-negative";
         this.index = index;
     }
 
@@ -32,6 +33,10 @@ public class UnMarkCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BenException {
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
+
         Task curr = tasks.get(index);
         curr.unMarkAsDone();
         Command.saveTasks(storage, tasks);

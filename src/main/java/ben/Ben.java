@@ -22,6 +22,9 @@ public class Ben {
      * @param filePath File path used to load and save task data.
      */
     public Ben(String filePath) {
+        assert filePath != null : "File path should not be null";
+        assert !filePath.trim().isEmpty() : "File path should not be empty";
+
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         try {
