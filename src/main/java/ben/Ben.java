@@ -36,7 +36,7 @@ public class Ben {
     }
 
     public Ben() {
-        this("data/ben.txt"); // use your actual default file path
+        this("data/ben.txt"); // Use your actual default file path
     }
 
     /**
