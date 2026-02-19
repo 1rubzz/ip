@@ -32,8 +32,12 @@ public class Event extends Task {
      */
     @Override
     public String returnStatus() {
-        return "[E]" + "[" + super.getStatusIcon() + "] " + super.getDescription() + " (from: "
+        String base = "[E]" + "[" + super.getStatusIcon() + "] " + super.getDescription() + " (from: "
                 + this.startTime + " " + "to: " + this.endTime + ")";
+        if (tag != null) {
+            base += " #" + tag;
+        }
+        return base;
     }
 
     /**
@@ -43,6 +47,10 @@ public class Event extends Task {
      */
     @Override
     public String fromTaskToString() {
-        return "E | " + (super.isDone() ? 1 : 0) + " | " + super.getDescription() + " | " + startTime + " | " + endTime;
+        String base = "E | " + (super.isDone() ? 1 : 0) + " | " + super.getDescription() + " | " + startTime + " | " + endTime;
+        if (tag != null) {
+            base += " | " + tag;
+        }
+        return base;
     }
 }

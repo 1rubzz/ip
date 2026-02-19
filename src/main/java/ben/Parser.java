@@ -10,6 +10,7 @@ import ben.command.FindCommand;
 import ben.command.ListCommand;
 import ben.command.MarkCommand;
 import ben.command.UnMarkCommand;
+import ben.command.TagCommand;
 
 /**
  * Parses user input and creates the corresponding command.
@@ -99,6 +100,25 @@ public class Parser {
             }
 
             return new FindCommand(parts[1]);
+        }
+
+        // store the tag without the hashtag
+        if (fullCommand.startsWith("tag")) {
+            String[] parts = fullCommand.split(" ");
+            if (parts.length != 3) {
+                throw new BenException("Usage: tag <task number> <tag>");
+            }
+
+            int index = Integer.parseInt(parts[1]) - 1;
+
+            String rawTag = parts[2];
+            if (!rawTag.startsWith("#")) {
+                throw new BenException("Tag must start with #");
+            }
+
+            String tag = rawTag.substring(1); // remove #
+
+            return new TagCommand(index, tag);
         }
 
         throw new BenException("I'm sorry, but I don't know what that means :-(");
