@@ -69,16 +69,11 @@ public class Ben {
         new Ben("data/tasks.txt").run();
     }
 
-    public String getResponse(String input) {
+    public String getResponse(String input) throws BenException {
         Ui ui = new Ui();
 
-        try {
-            Command c = Parser.parse(input);
-            c.execute(tasks, ui, storage);
-            return ui.getOutput();
-        } catch (BenException e) {
-            return e.getMessage();
-        }
+        Command c = Parser.parse(input);
+        c.execute(tasks, ui, storage);
+        return ui.getOutput();
     }
-
 }

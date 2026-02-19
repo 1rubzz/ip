@@ -43,6 +43,25 @@ public class DialogBox extends HBox {
         this.getChildren().setAll(tmp);
     }
 
+    private void applyErrorStyle() {
+        this.setStyle(
+                "-fx-background-color: #ffe6e6;" +
+                        "-fx-background-radius: 10;" +
+                        "-fx-padding: 10;"
+        );
+        text.setStyle(
+                "-fx-text-fill: #8b0000;" +
+                        "-fx-font-weight: bold;"
+        );
+    }
+
+    public static DialogBox getErrorDialog(String s, Image i) {
+        DialogBox db = new DialogBox(s, i);
+        db.flip(); // keep duke on left
+        db.applyErrorStyle();
+        return db;
+    }
+
     public static DialogBox getUserDialog(String s, Image i) {
         return new DialogBox(s, i);
     }
