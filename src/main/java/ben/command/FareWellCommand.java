@@ -20,8 +20,7 @@ public class FareWellCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BenException {
-
-        assert ui != null : "Ui cannot be null";
+        assert ui != null : ASSERT_UI_NULL;
 
         ui.bidFarewell();
     }

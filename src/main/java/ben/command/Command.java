@@ -15,6 +15,16 @@ import ben.Ui;
  */
 public abstract class Command {
 
+    // central assertion message, reduce magic strings
+    protected static final String ASSERT_TASKLIST_NULL =
+            "TaskList cannot be null";
+
+    protected static final String ASSERT_UI_NULL =
+            "Ui cannot be null";
+
+    protected static final String ASSERT_STORAGE_NULL =
+            "Storage cannot be null";
+
     /**
      * Executes the command.
      *

@@ -35,9 +35,9 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BenException {
 
-        assert tasks != null : "TaskList cannot be null";
-        assert ui != null : "Ui cannot be null";
-        assert storage != null : "Storage cannot be null";
+        assert tasks != null : ASSERT_TASKLIST_NULL;
+        assert ui != null : ASSERT_UI_NULL;
+        assert storage != null : ASSERT_STORAGE_NULL;
 
         if (index >= tasks.size()) { // Guard clause
             throw new BenException("Invalid task index.");
@@ -48,7 +48,7 @@ public class MarkCommand extends Command {
         Command.saveTasks(storage, tasks);
 
         ui.showLine();
-        ui.showMessage("Nice! I've marked this task as done:");
+        ui.showMessage("Got it. I've marked task " + (index + 1) + " as done:");
         ui.showMessage(curr.returnStatus());
         ui.showLine();
         return;

@@ -36,9 +36,9 @@ public class CreateToDoCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BenException {
-        assert tasks != null : "TaskList cannot be null";
-        assert ui != null : "Ui cannot be null";
-        assert storage != null : "Storage cannot be null";
+        assert tasks != null : ASSERT_TASKLIST_NULL;
+        assert ui != null : ASSERT_UI_NULL;
+        assert storage != null : ASSERT_STORAGE_NULL;
 
         Task curr = new ToDo(description);
         tasks.add(curr);

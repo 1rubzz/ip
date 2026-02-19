@@ -33,9 +33,9 @@ public class FindCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
 
-        assert tasks != null : "TaskList cannot be null";
-        assert ui != null : "Ui cannot be null";
-        assert storage != null : "Storage cannot be null";
+        assert tasks != null : ASSERT_TASKLIST_NULL;
+        assert ui != null : ASSERT_UI_NULL;
+        assert storage != null : ASSERT_STORAGE_NULL;
 
         ui.showLine();
         ui.showMessage("Here are the matching tasks in your list:");
@@ -44,7 +44,9 @@ public class FindCommand extends Command {
         int count = 1;
 
         for (Task task : tasks.getTasks()) {
-            if (task.getDescription().contains(keyword)) {
+            // Tweak feature: add case-insensitive find
+            if (task.getDescription().toLowerCase()
+                    .contains(keyword.toLowerCase())) {
                 ui.showMessage(count + ". " + task.returnStatus());
                 count++;
                 hasMatch = true;

@@ -49,9 +49,9 @@ public class CreateEventCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws BenException {
-        assert tasks != null;
-        assert ui != null;
-        assert storage != null;
+        assert tasks != null : ASSERT_TASKLIST_NULL;
+        assert ui != null : ASSERT_UI_NULL;
+        assert storage != null : ASSERT_STORAGE_NULL;
 
         Task curr = new Event(this.startTime, this.endTime, this.description);
         tasks.add(curr);
