@@ -101,8 +101,6 @@ public class Parser {
             return new FindCommand(parts[1]);
         }
 
-
-
         throw new BenException("I'm sorry, but I don't know what that means :-(");
 
     }

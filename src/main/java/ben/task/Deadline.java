@@ -13,7 +13,7 @@ public class Deadline extends Task {
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
-    private LocalDate due;
+    private final LocalDate due;
 
     /**
      * Creates a deadline task with the given date and description.
@@ -23,16 +23,15 @@ public class Deadline extends Task {
      * @throws BenException If the date format is invalid.
      */
     public Deadline(String date, String description) throws BenException {
-        assert date != null : "Deadline date should not be null";
-        assert description != null : "Deadline description should not be null";
-        assert !date.trim().isEmpty() : "Deadline date should not be empty";
-        assert !description.trim().isEmpty() : "Deadline description should not be empty";
-
         super(description);
+
+        assert date != null : "Deadline date should not be null";
+        assert !date.trim().isEmpty() : "Deadline date should not be empty";
+
         try {
             this.due = LocalDate.parse(date, INPUT_FORMAT);
         } catch (Exception e) {
-            throw new BenException("Invalid date format. Please follow dd/MM/yyyy");
+            throw new BenException("Invalid date format. Please follow yyyy-MM-dd");
         }
     }
 

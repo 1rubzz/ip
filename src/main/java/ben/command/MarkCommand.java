@@ -39,6 +39,10 @@ public class MarkCommand extends Command {
         assert ui != null : "Ui cannot be null";
         assert storage != null : "Storage cannot be null";
 
+        if (index >= tasks.size()) { // Guard clause
+            throw new BenException("Invalid task index.");
+        }
+
         Task curr = tasks.get(index);
         curr.markAsDone();
         Command.saveTasks(storage, tasks);

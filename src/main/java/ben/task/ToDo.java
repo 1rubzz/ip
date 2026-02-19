@@ -12,9 +12,6 @@ public class ToDo extends Task {
      * @param description Description of the to-do task
      */
     public ToDo(String description) {
-        assert description != null : "ToDo description should not be null";
-        assert !description.trim().isEmpty() : "ToDo description should not be empty";
-
         super(description);
     }
 

@@ -13,9 +13,9 @@ import ben.task.Task;
  */
 public class CreateEventCommand extends Command {
 
-    private String startTime;
-    private String endTime;
-    private String description;
+    private final String startTime;
+    private final String endTime;
+    private final String description;
 
     /**
      * Creates a command that adds an event task.

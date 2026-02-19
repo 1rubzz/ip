@@ -5,8 +5,8 @@ package ben.task;
  *
  */
 public class Event extends Task {
-    private String startTime;
-    private String endTime;
+    private final String startTime;
+    private final String endTime;
 
     /**
      * Creates an event task with a start time, end time and description.
@@ -16,11 +16,11 @@ public class Event extends Task {
      * @param description Description of the event.
      */
     public Event(String startTime, String endTime, String description) {
+        super(description); // the Parent class task will assert for description
+
         assert startTime != null : "Event start time should not be null";
         assert endTime != null : "Event end time should not be null";
-        assert description != null : "Event description should not be null";
 
-        super(description);
         this.startTime = startTime;
         this.endTime = endTime;
     }

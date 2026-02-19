@@ -5,8 +5,8 @@ import ben.BenException;
 /**
  * Represents a basic task with a description and completion status.
  */
-public class Task {
-    private Boolean isDone;
+public abstract class Task {
+    private boolean isDone;
     private String description;
 
     /**
@@ -119,8 +119,6 @@ public class Task {
      *
      * @return String representation of the task for saving.
      */
-    public String fromTaskToString() {
-        return ""; // No useful implementation here
-    }
+    public abstract String fromTaskToString();
 
 }

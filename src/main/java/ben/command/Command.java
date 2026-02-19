@@ -3,6 +3,7 @@ package ben.command;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import ben.Ben;
 import ben.BenException;
 import ben.Storage;
 import ben.TaskList;
@@ -40,7 +41,7 @@ public abstract class Command {
      * @param storage Storage responsible for writing data to the file.
      * @param list    Task list containing the tasks to be saved.
      */
-    public static void saveTasks(Storage storage, TaskList list) {
+    public static void saveTasks(Storage storage, TaskList list) throws BenException{
 
         assert storage != null : "Storage should not be null";
         assert list != null : "TaskList should not be null";
@@ -52,7 +53,8 @@ public abstract class Command {
             }
             storage.save(lines);
         } catch (IOException e) {
-            System.out.println("Failed to save tasks to file");
+            // Throw error rather than printing error message
+            throw new BenException("Failed to save tasks to file", e);
         }
     }
 }
