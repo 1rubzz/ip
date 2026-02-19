@@ -42,8 +42,12 @@ public class Deadline extends Task {
      */
     @Override
     public String returnStatus() {
-        return "[D]" + "[" + super.getStatusIcon() + "] " + super.getDescription()
+        String base = "[D]" + "[" + super.getStatusIcon() + "] " + super.getDescription()
                 + " (by: " + due.format(OUTPUT_FORMAT) + ")";
+        if (tag != null) {
+            base += " #" + tag;
+        }
+        return base;
     }
 
     /**
@@ -54,6 +58,10 @@ public class Deadline extends Task {
     @Override
     public String fromTaskToString() {
         // Save to file data using input format and only use output format for printing.
-        return "D | " + (super.isDone() ? 1 : 0) + " | " + super.getDescription() + " | " + due.format(INPUT_FORMAT);
+        String base = "D | " + (super.isDone() ? 1 : 0) + " | " + super.getDescription() + " | " + due.format(INPUT_FORMAT);
+        if (tag != null) {
+            base += " | " + tag;
+        }
+        return base;
     }
 }

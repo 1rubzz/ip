@@ -8,6 +8,7 @@ import ben.BenException;
 public abstract class Task {
     private boolean isDone;
     private String description;
+    protected String tag;
 
     /**
      * Creates a task with the specified description.
@@ -18,8 +19,8 @@ public abstract class Task {
         assert description != null : "Description should not be null";
         assert !description.trim().isEmpty() : "Description should not be empty";
 
-        this.isDone = false;
         this.description = description;
+        this.tag = null; // tag will be null by default
     }
 
     /**
@@ -71,7 +72,30 @@ public abstract class Task {
      * @return String representation of the task status.
      */
     public String returnStatus() {
-        return "[" + this.getStatusIcon() + "] " + this.getDescription();
+        String base = "[" + this.getStatusIcon() + "] " + this.getDescription();
+        if (tag != null) { // show the necessary tag
+            base += " #" + tag;
+        }
+        return base;
+    }
+
+    /**
+     * Sets a tag for the task.
+     *
+     * @param tag Tag to be attached.
+     */
+    public void setTag(String tag) {
+        assert tag != null : "Tag should not be null";
+        this.tag = tag;
+    }
+
+    /**
+     * Returns the tag of this task.
+     *
+     * @return Tag string, or null if no tag.
+     */
+    public String getTag() {
+        return tag;
     }
 
     /**
@@ -90,6 +114,12 @@ public abstract class Task {
             if (parts[1].equals("1")) {
                 todo.markAsDone();
             }
+
+            // Tag exists if length > 3
+            if (parts.length > 3) {
+                todo.setTag(parts[3]);
+            }
+
             return todo;
         }
 
@@ -98,6 +128,12 @@ public abstract class Task {
             if (parts[1].equals("1")) {
                 deadline.markAsDone();
             }
+
+            // Tag exists if length > 4
+            if (parts.length > 4) {
+                deadline.setTag(parts[4]);
+            }
+
             return deadline;
         }
 
@@ -106,6 +142,12 @@ public abstract class Task {
             if (parts[1].equals("1")) {
                 event.markAsDone();
             }
+
+            // Tag exists if length > 5
+            if (parts.length > 5) {
+                event.setTag(parts[5]);
+            }
+
             return event;
         }
 

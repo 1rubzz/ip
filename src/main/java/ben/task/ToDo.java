@@ -22,7 +22,11 @@ public class ToDo extends Task {
      */
     @Override
     public String returnStatus() {
-        return "[T]" + "[" + super.getStatusIcon() + "] " + super.getDescription();
+        String base = "[T]" + "[" + super.getStatusIcon() + "] " + super.getDescription();
+        if (tag != null) {
+            base += " #" + tag;
+        }
+        return base;
     }
 
     /**
@@ -32,6 +36,10 @@ public class ToDo extends Task {
      */
     @Override
     public String fromTaskToString() {
-        return "T | " + (super.isDone() ? 1 : 0) + " | " + super.getDescription();
+        String base = "T | " + (super.isDone() ? 1 : 0) + " | " + super.getDescription();
+        if (tag != null) {
+            base += " | " + tag;
+        }
+        return base;
     }
 }
