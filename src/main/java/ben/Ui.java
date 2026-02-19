@@ -1,5 +1,4 @@
 package ben;
-
 import java.util.Scanner;
 
 /**
@@ -70,4 +69,5 @@ public class Ui {
     public String getOutput() {
         return output.toString();
     }
+
 }
