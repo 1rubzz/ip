@@ -25,12 +25,19 @@ public class ListCommand extends Command {
         assert ui != null : "Ui cannot be null";
         assert storage != null : "Storage cannot be null";
 
+        if (tasks.size() == 0) { // Guard clause
+            ui.showLine();
+            ui.showMessage("Your task list is empty.");
+            ui.showLine();
+            return;
+        }
+
         ui.showLine();
         ui.showMessage("Here are the tasks in your list");
 
         for (int i = 0; i < tasks.size(); i++) {
             Task curr = tasks.get(i);
-            ui.showMessage((i + 1) + "." + curr.returnStatus());
+            ui.showMessage((i + 1) + ". " + curr.returnStatus());
         }
 
         ui.showLine();

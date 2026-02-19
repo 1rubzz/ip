@@ -37,14 +37,17 @@ public class UnMarkCommand extends Command {
         assert ui != null : "Ui cannot be null";
         assert storage != null : "Storage cannot be null";
 
+        if (index >= tasks.size()) { // Guard clause
+            throw new BenException("Invalid task index.");
+        }
+
         Task curr = tasks.get(index);
         curr.unMarkAsDone();
         Command.saveTasks(storage, tasks);
 
         ui.showLine();
-        ui.showMessage("Got it. I've added this task:");
+        ui.showMessage("Got it. I've unmarked this task:");
         ui.showMessage(curr.returnStatus());
-        ui.showMessage("Now you have " + tasks.getNoOfTasks() + " tasks in the list.");
         ui.showLine();
         return;
     }

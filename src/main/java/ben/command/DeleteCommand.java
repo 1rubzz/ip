@@ -37,6 +37,10 @@ public class DeleteCommand extends Command {
         assert ui != null : "Ui cannot be null";
         assert storage != null : "Storage cannot be null";
 
+        if (index >= tasks.size()) { // guard clause
+            throw new BenException("Invalid task index.");
+        }
+
         Task curr = tasks.get(index);
         tasks.remove(index);
         saveTasks(storage, tasks);

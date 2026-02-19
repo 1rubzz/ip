@@ -40,12 +40,19 @@ public class FindCommand extends Command {
         ui.showLine();
         ui.showMessage("Here are the matching tasks in your list:");
 
+        boolean hasMatch = false;
         int count = 1;
+
         for (Task task : tasks.getTasks()) {
             if (task.getDescription().contains(keyword)) {
-                ui.showMessage(count + "." + task.returnStatus());
+                ui.showMessage(count + ". " + task.returnStatus());
                 count++;
+                hasMatch = true;
             }
+        }
+
+        if (!hasMatch) {
+            ui.showMessage("No matching tasks found.");
         }
 
         ui.showLine();
