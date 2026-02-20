@@ -1,30 +1,248 @@
 # Ben User Guide
 
-// Update the title above to match the actual product name
+![UI](Ui.png)
 
-// Product screenshot goes here
+Ben is a chatbot-like application with a Graphical User Interface (GUI).  
+It allows users to manage tasks efficiently using simple command-based inputs.
 
-// Product intro goes here
+## Features
 
-## Adding deadlines
+Ben supports:
 
-// Describe the action and its outcome.
+- ToDo tasks
+- Deadline tasks
+- Event tasks
+- Marking and unmarking tasks
+- Deleting tasks
+- Finding tasks
+- Tagging and untagging tasks
+- Automatic data saving
 
-// Give examples of usage
+---
 
-Example: `keyword (optional arguments)`
+## Adding Tasks
 
-// A description of the expected outcome goes here
+### Adding a ToDo Task: `todo`
 
+Adds a simple task without any date.
+
+**Format:**  
+`todo DESCRIPTION`
+
+**Example:**  
+`todo Submit Assignment`
+
+**Expected output:**
 ```
-expected output
+Got it. I've added this task:
+[T][ ] read book
+Now you have 1 task in the list.
 ```
 
-## Feature ABC
+---
 
-// Feature details
+### Adding a Deadline Task: `deadline`
 
+Adds a task that needs to be completed by a specific date.  
+Date specified in `/by` is required and should follow the format `YYYY-MM-DD`.
 
-## Feature XYZ
+**Format:**  
+`deadline DESCRIPTION /by DATE`
 
-// Feature details
+**Example:**  
+`deadline return book /by 2026-02-19`
+
+**Expected output:**
+```
+Got it. I've added this task:
+[D][ ] return book (by: Feb 19 2026)
+Now you have 2 tasks in the list.
+```
+
+---
+
+### Adding an Event Task: `event`
+
+Adds a task that occurs during a specific date or time range.
+
+**Format:**  
+`event DESCRIPTION /from START /to END`
+
+**Example:**  
+`event meeting /from 2026-01-01 /to 2026-01-02`
+
+**Expected output:**
+```
+Got it. I've added this task:
+[E][ ] meeting (from: 2026-01-01 to: 2026-01-02)
+Now you have 3 tasks in the list.
+```
+
+---
+
+## Listing All Tasks: `list`
+
+Displays all tasks in your task list.
+
+**Format:**  
+`list`
+
+**Expected output:**
+```
+Here are the tasks in your list:
+[T][ ] read book
+[D][ ] return book (by: Feb 19 2026)
+[E][ ] meeting (from: 2026-01-01 to: 2026-01-02)
+```
+
+---
+
+## Marking a Task as Done: `mark`
+
+Marks a specific task as completed.
+
+**Format:**  
+`mark TASK_NUMBER`
+
+**Example:**  
+`mark 1`
+
+**Expected output:**
+```
+Nice! I've marked this task as done:
+[T][X] read book
+```
+
+---
+
+## Unmarking a Task: `unmark`
+
+Marks a specific task as not completed.
+
+**Format:**  
+`unmark TASK_NUMBER`
+
+**Example:**  
+`unmark 1`
+
+**Expected output:**
+```
+OK, I've marked this task as not done yet:
+[T][ ] read book
+```
+
+---
+
+## Deleting a Task: `delete`
+
+Removes a task from your task list.
+
+**Format:**  
+`delete TASK_NUMBER`
+
+**Example:**  
+`delete 2`
+
+**Expected output:**
+```
+Noted. I've removed this task:
+[D][ ] return book
+Now you have 2 tasks in the list.
+```
+
+---
+
+## Finding Tasks: `find`
+
+Searches for tasks containing a specific keyword.
+
+**Format:**  
+`find KEYWORD`
+
+**Example:**  
+`find book`
+
+**Expected output:**
+```
+Here are the matching tasks in your list:
+[T][ ] read book
+```
+
+---
+
+## Tagging a Task: `tag`
+
+Adds tags to your tasks for better organization.  
+Tags are added at the end of the task description, prefixed with `#`.
+
+**Format:**  
+`tag TASK_NUMBER #label`
+
+**Example:**  
+`tag 1 #reading`
+
+**Expected output:**
+```
+Noted. I've tagged this task:
+[D][ ] return book (#reading)
+```
+
+---
+
+## Untagging a Task: `untag`
+
+Removes a tag from your task.
+
+**Format:**  
+`untag TASK_NUMBER #label`
+
+**Example:**  
+`untag 1 #reading`
+
+**Expected output:**
+```
+Noted. I've removed tag(s) from this task:
+[D][ ] return book
+```
+
+---
+
+## Exiting the Program: `bye`
+
+Exits the Ben application.
+
+**Format:**  
+`bye`
+
+**Expected output:**
+```
+Bye. Hope to see you again soon!
+```
+
+---
+
+## Command Summary
+
+| Command  | Format |
+|----------|--------|
+| Todo     | `todo DESCRIPTION` |
+| Deadline | `deadline DESCRIPTION /by DATE` |
+| Event    | `event DESCRIPTION /from START /to END` |
+| List     | `list` |
+| Mark     | `mark TASK_NUMBER` |
+| Unmark   | `unmark TASK_NUMBER` |
+| Delete   | `delete TASK_NUMBER` |
+| Tag      | `tag TASK_NUMBER #label` |
+| Untag    | `untag TASK_NUMBER #label` |
+| Find     | `find KEYWORD` |
+| Exit     | `bye` |
+
+---
+
+## Notes
+
+- Task numbers start from 1.
+- Date format for deadlines should follow: `YYYY-MM-DD`.
+- Tasks are automatically saved to `data/ben.txt` after each operation.
+- If an invalid command is entered, Ben will display an appropriate error message.
+- If the data file cannot be found, Ben will create a new empty data file automatically.
