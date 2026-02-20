@@ -30,12 +30,12 @@ Adds a simple task without any date.
 `todo DESCRIPTION`
 
 **Example:**  
-`todo Submit Assignment`
+`todo submit assignment`
 
 **Expected output:**
 ```
 Got it. I've added this task:
-[T][ ] read book
+[T][ ] submit assignment
 Now you have 1 task in the list.
 ```
 
@@ -50,12 +50,12 @@ Date specified in `/by` is required and should follow the format `YYYY-MM-DD`.
 `deadline DESCRIPTION /by DATE`
 
 **Example:**  
-`deadline return book /by 2026-02-19`
+`deadline read book /by 2026-02-19`
 
 **Expected output:**
 ```
 Got it. I've added this task:
-[D][ ] return book (by: Feb 19 2026)
+[D][ ] read book (by: Feb 19 2026)
 Now you have 2 tasks in the list.
 ```
 
@@ -89,10 +89,10 @@ Displays all tasks in your task list.
 
 **Expected output:**
 ```
-Here are the tasks in your list:
-[T][ ] read book
-[D][ ] return book (by: Feb 19 2026)
-[E][ ] meeting (from: 2026-01-01 to: 2026-01-02)
+Here are the tasks in your list
+1. [T][ ] submit assignment
+2. [D][ ] read book (by: Feb 19 2026)
+3. E][ ] meeting (from: 2026-01-01 to: 2026-01-02)
 ```
 
 ---
@@ -109,8 +109,8 @@ Marks a specific task as completed.
 
 **Expected output:**
 ```
-Nice! I've marked this task as done:
-[T][X] read book
+Got it. I've marked task 1 as done:
+[T][X] submit assignment
 ```
 
 ---
@@ -127,8 +127,8 @@ Marks a specific task as not completed.
 
 **Expected output:**
 ```
-OK, I've marked this task as not done yet:
-[T][ ] read book
+Got it. I've unmarked task 1
+[T][ ] submit assignment
 ```
 
 ---
@@ -146,7 +146,7 @@ Removes a task from your task list.
 **Expected output:**
 ```
 Noted. I've removed this task:
-[D][ ] return book
+[D][ ] read book (by: Feb 19 2026)
 Now you have 2 tasks in the list.
 ```
 
@@ -160,12 +160,12 @@ Searches for tasks containing a specific keyword.
 `find KEYWORD`
 
 **Example:**  
-`find book`
+`find assignment`
 
 **Expected output:**
 ```
 Here are the matching tasks in your list:
-[T][ ] read book
+1. [T][ ] submit assignment
 ```
 
 ---
@@ -179,12 +179,12 @@ Tags are added at the end of the task description, prefixed with `#`.
 `tag TASK_NUMBER #label`
 
 **Example:**  
-`tag 1 #reading`
+`tag 1 #Important`
 
 **Expected output:**
 ```
-Noted. I've tagged this task:
-[D][ ] return book (#reading)
+Nice! I have tagged the task with #Important
+[T][ ] submit assignment #Important
 ```
 
 ---
@@ -197,12 +197,12 @@ Removes a tag from your task.
 `untag TASK_NUMBER #label`
 
 **Example:**  
-`untag 1 #reading`
+`untag 1`
 
 **Expected output:**
 ```
-Noted. I've removed tag(s) from this task:
-[D][ ] return book
+Nice! I have untagged the task 1
+[T][ ] submit assignment
 ```
 
 ---

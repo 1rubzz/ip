@@ -29,7 +29,7 @@ public class UnTagCommand extends Command {
         Command.saveTasks(storage, tasks);
 
         ui.showLine();
-        ui.showMessage("Nice! I have untagged the task " + index);
+        ui.showMessage("Nice! I have untagged the task " + (index + 1));
         ui.showMessage(curr.returnStatus());
         ui.showLine();
     }

@@ -1,1 +1,2 @@
-T | 0 | Submit CS2103T Individual Project | Important
+T | 0 | submit assignment
+E | 0 | meeting | 2026-01-01 | 2026-01-02
