@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ben.MainWindow"
+            style="-fx-background-image: url('/images/background.png');
+                   -fx-background-size: cover;
+                   -fx-background-position: center center;">
+
+    <children>
+
+        <ScrollPane fx:id="scrollPane"
+                    prefHeight="535.0"
+                    prefWidth="385.0"
+                    hbarPolicy="NEVER"
+                    vbarPolicy="ALWAYS"
+                    AnchorPane.topAnchor="1.0"
+                    AnchorPane.leftAnchor="1.0"
+                    AnchorPane.rightAnchor="1.0" />
+
+        <TextField fx:id="userInput"
+                   prefWidth="325.0"
+                   AnchorPane.bottomAnchor="1.0"
+                   AnchorPane.leftAnchor="1.0"
+                   onAction="#handleUserInput" />
+
+        <Button fx:id="sendButton"
+                text="Send"
+                prefWidth="55.0"
+                AnchorPane.bottomAnchor="1.0"
+                AnchorPane.rightAnchor="1.0"
+                onAction="#handleUserInput" />
+
+        <VBox fx:id="dialogContainer"
+              AnchorPane.topAnchor="1.0"
+              AnchorPane.leftAnchor="1.0"
+              AnchorPane.rightAnchor="1.0"
+              AnchorPane.bottomAnchor="50.0"
+              style="-fx-background-color: transparent;" />
+
+    </children>
+</AnchorPane>

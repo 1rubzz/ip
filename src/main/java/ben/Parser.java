@@ -11,6 +11,7 @@ import ben.command.ListCommand;
 import ben.command.MarkCommand;
 import ben.command.UnMarkCommand;
 import ben.command.TagCommand;
+import ben.command.UnTagCommand;
 
 /**
  * Parses user input and creates the corresponding command.
@@ -45,7 +46,7 @@ public class Parser {
             return command;
         }
 
-        if ((command = parseTagCommand(fullCommand))  != null) {
+        if ((command = parseTagCommands(fullCommand))  != null) {
             return command;
         }
 
@@ -77,7 +78,7 @@ public class Parser {
         return null;
     }
 
-    private static TagCommand parseTagCommand(String fullCommand) throws BenException {
+    private static Command parseTagCommands(String fullCommand) throws BenException {
         // store the tag without the hashtag
         if (fullCommand.startsWith("tag")) {
             String[] parts = fullCommand.split(" ");
@@ -95,6 +96,17 @@ public class Parser {
             String tag = rawTag.substring(1); // remove #
 
             return new TagCommand(index, tag);
+        }
+
+        if (fullCommand.startsWith("untag")) {
+            String[] parts = fullCommand.split(" ");
+
+            if (parts.length != 2) {
+                throw new BenException("Usage: untag <task number>");
+            }
+
+            int index = parseIndex(parts[1]);
+            return new UnTagCommand(index);
         }
         return null;
     }
