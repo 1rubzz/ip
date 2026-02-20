@@ -90,6 +90,18 @@ public abstract class Task {
     }
 
     /**
+     * Removes a tag from the task.
+     *
+     * @throws BenException If there is no tag to remove.
+     */
+    public void removeTag() throws BenException {
+        if (tag == null) {
+            throw new BenException("This task has no tag to remove.");
+        }
+        tag = null;
+    }
+
+    /**
      * Returns the tag of this task.
      *
      * @return Tag string, or null if no tag.
