@@ -20,6 +20,7 @@ public class UnTagCommand extends Command {
         assert ui != null : ASSERT_UI_NULL;
         assert storage != null : ASSERT_STORAGE_NULL;
 
+        // Ensure that the index is not out of bounds
         if (index < 0 || index >= tasks.size()) {
             throw new BenException("Task number is out of range.");
         }
