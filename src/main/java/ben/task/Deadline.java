@@ -2,6 +2,7 @@ package ben.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import ben.BenException;
 
@@ -30,7 +31,7 @@ public class Deadline extends Task {
 
         try {
             this.due = LocalDate.parse(date, INPUT_FORMAT);
-        } catch (Exception e) {
+        } catch (DateTimeParseException e) { // Exception must not be too broad
             throw new BenException("Invalid date format. Please follow yyyy-MM-dd");
         }
     }

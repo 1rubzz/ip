@@ -8,7 +8,7 @@ import ben.task.Task;
  * Represents a list of tasks in the application.
  */
 public class TaskList {
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
     /**
      * Creates a task list from the given list of task data.
@@ -18,8 +18,8 @@ public class TaskList {
      */
     public TaskList(ArrayList<String> input) throws BenException {
         this.tasks = new ArrayList<>();
-        for (int i = 0; i < input.size(); i++) {
-            tasks.add(Task.fromStringToTask(input.get(i)));
+        for (String s : input) {
+            tasks.add(Task.fromStringToTask(s));
         }
     }
 

@@ -49,7 +49,6 @@ public class UnMarkCommand extends Command {
         ui.showMessage("Got it. I've unmarked task " + (index + 1));
         ui.showMessage(curr.returnStatus());
         ui.showLine();
-        return;
     }
 
 }

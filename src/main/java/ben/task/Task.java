@@ -7,7 +7,7 @@ import ben.BenException;
  */
 public abstract class Task {
     private boolean isDone;
-    private String description;
+    private final String description;
     protected String tag;
 
     /**

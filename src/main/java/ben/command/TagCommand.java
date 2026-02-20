@@ -30,6 +30,5 @@ public class TagCommand extends Command {
         ui.showMessage("Nice! I have tagged the task with #" + tag);
         ui.showMessage(curr.returnStatus());
         ui.showLine();
-        return;
     }
 }

@@ -53,7 +53,7 @@ public class Ben {
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (BenException e) {
-                ui.showError(e.getMessage());
+                Ui.showError(e.getMessage());
             } finally {
                 ui.showLine();
             }

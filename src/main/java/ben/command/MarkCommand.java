@@ -51,7 +51,6 @@ public class MarkCommand extends Command {
         ui.showMessage("Got it. I've marked task " + (index + 1) + " as done:");
         ui.showMessage(curr.returnStatus());
         ui.showLine();
-        return;
     }
 
 }

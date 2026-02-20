@@ -57,7 +57,7 @@ public class DialogBox extends HBox {
 
     public static DialogBox getErrorDialog(String s, Image i) {
         DialogBox db = new DialogBox(s, i);
-        db.flip(); // keep duke on left
+        db.flip();
         db.applyErrorStyle();
         return db;
     }
@@ -66,7 +66,7 @@ public class DialogBox extends HBox {
         return new DialogBox(s, i);
     }
 
-    public static DialogBox getDukeDialog(String s, Image i) {
+    public static DialogBox getBenDialog(String s, Image i) {
         var db = new DialogBox(s, i);
         db.flip();
         return db;

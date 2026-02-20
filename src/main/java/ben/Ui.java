@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Ui {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String horizontal_lines = "----------------------------------------";
-    private StringBuilder output = new StringBuilder();
+    private final StringBuilder output = new StringBuilder();
 
     /**
      * Displays the welcome message.
@@ -60,7 +60,6 @@ public class Ui {
      * @param message Error message to be displayed.
      */
     public static void showError(String message) {
-        // You may optionally implement this similarly if needed
     }
 
     /**

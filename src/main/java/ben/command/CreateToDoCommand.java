@@ -49,7 +49,6 @@ public class CreateToDoCommand extends Command {
         ui.showMessage(curr.returnStatus());
         ui.showMessage("Now you have " + tasks.getNoOfTasks() + " tasks in the list.");
         ui.showLine();
-        return;
     }
 
 }
