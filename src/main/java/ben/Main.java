@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    private Ben ben = new Ben();
+    private final Ben ben = new Ben();
 
     @Override
     public void start(Stage stage) {

@@ -55,6 +55,15 @@ public class DialogBox extends HBox {
         );
     }
 
+    /**
+     * Creates and returns a DialogBox styled to represent an error message.
+     * The dialog is flipped to align on the left and styled with
+     * a red background and bold red text.
+     *
+     * @param s The error message to display.
+     * @param i The image associated with the error dialog.
+     * @return A DialogBox configured with error styling.
+     */
     public static DialogBox getErrorDialog(String s, Image i) {
         DialogBox db = new DialogBox(s, i);
         db.flip();
@@ -62,10 +71,26 @@ public class DialogBox extends HBox {
         return db;
     }
 
+    /**
+     * Creates and returns a DialogBox representing a user message.
+     * The dialog is aligned to the right with default styling.
+     *
+     * @param s The user's message to display.
+     * @param i The image associated with the user.
+     * @return A DialogBox configured for user messages.
+     */
     public static DialogBox getUserDialog(String s, Image i) {
         return new DialogBox(s, i);
     }
 
+    /**
+     * Creates and returns a DialogBox representing a Ben (bot) message.
+     * The dialog is flipped to align on the left.
+     *
+     * @param s The bot message to display.
+     * @param i The image associated with Ben.
+     * @return A DialogBox configured for bot messages.
+     */
     public static DialogBox getBenDialog(String s, Image i) {
         var db = new DialogBox(s, i);
         db.flip();
