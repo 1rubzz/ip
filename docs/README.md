@@ -233,7 +233,7 @@ Bye. Hope to see you again soon!
 | Unmark   | `unmark TASK_NUMBER` |
 | Delete   | `delete TASK_NUMBER` |
 | Tag      | `tag TASK_NUMBER #label` |
-| Untag    | `untag TASK_NUMBER #label` |
+| Untag    | `untag TASK_NUMBER` |
 | Find     | `find KEYWORD` |
 | Exit     | `bye` |
 
@@ -244,5 +244,3 @@ Bye. Hope to see you again soon!
 - Task numbers start from 1.
 - Date format for deadlines should follow: `YYYY-MM-DD`.
 - Tasks are automatically saved to `data/ben.txt` after each operation.
-- If an invalid command is entered, Ben will display an appropriate error message.
-- If the data file cannot be found, Ben will create a new empty data file automatically.
