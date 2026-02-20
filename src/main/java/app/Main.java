@@ -2,7 +2,6 @@ package app;
 
 import ben.Ben;
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -26,18 +25,88 @@ public class Main extends Application {
 
     private Image userImage =
             new Image(this.getClass().getResourceAsStream("/images/mofu1.png"));
-    private Image dukeImage =
+    private Image benImage =
             new Image(this.getClass().getResourceAsStream("/images/mofu2.png"));
 
     private Ben ben = new Ben();
 
     @Override
     public void start(Stage stage) {
+        AnchorPane mainLayout = initialiseUiComponents();
+        configureStage(stage);
+        configurerScrollPaneAppearance();
+        greetUser();
+        configureUserInputHandlers();
+        mainLayout.setPrefSize(400.0, 600.0);
+        configureLayoutDimensions();
+        configureComponentAnchors();
+        enableAutoScroll();
+    }
 
+    private void enableAutoScroll() {
+        // Auto scroll
+        dialogContainer.heightProperty().addListener(
+                observable -> scrollPane.setVvalue(1.0)
+        );
+    }
+
+    private void configureComponentAnchors() {
+        AnchorPane.setTopAnchor(scrollPane, 1.0);
+
+        AnchorPane.setBottomAnchor(sendButton, 1.0);
+        AnchorPane.setRightAnchor(sendButton, 1.0);
+
+        AnchorPane.setLeftAnchor(userInput, 1.0);
+        AnchorPane.setBottomAnchor(userInput, 1.0);
+    }
+
+    private void configureLayoutDimensions() {
+        scrollPane.setPrefSize(385.0, 535.0);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
+        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+
+        userInput.setPrefWidth(325.0);
+        sendButton.setPrefWidth(55.0);
+    }
+
+    private void configureUserInputHandlers() {
+        sendButton.setOnMouseClicked(event -> handleUserInput());
+        userInput.setOnAction(event -> handleUserInput());
+    }
+
+    private void greetUser() {
+        dialogContainer.getChildren().add(
+                DialogBox.getBenDialog(
+                        "Hello! I'm Ben. How can I help you?",
+                        benImage
+                )
+        );
+    }
+
+    private void configurerScrollPaneAppearance() {
+        scrollPane.setStyle(
+                "-fx-background-color: transparent;" +
+                        "-fx-background: transparent;"
+        );
+        scrollPane.setOpacity(0.98); // small tweak to remove white bleed
+    }
+
+    private void configureStage(Stage stage) {
+        stage.setScene(scene);
+        stage.setTitle("Ben");
+        stage.setResizable(false);
+        stage.setMinHeight(600.0);
+        stage.setMinWidth(400.0);
+        stage.show();
+    }
+
+    private AnchorPane initialiseUiComponents() {
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
 
-        // Transparent scrollpane + content
+        // scrollPane and dialogueContainer
         scrollPane.setStyle("-fx-background-color: transparent;");
         dialogContainer.setStyle("-fx-background-color: transparent;");
 
@@ -59,53 +128,7 @@ public class Main extends Application {
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
         scene = new Scene(mainLayout);
-        stage.setScene(scene);
-        stage.setTitle("Ben");
-        stage.setResizable(false);
-        stage.setMinHeight(600.0);
-        stage.setMinWidth(400.0);
-        stage.show();
-
-        // REMOVE ScrollPane white viewport background (proper way)
-        scrollPane.setStyle(
-                "-fx-background-color: transparent;" +
-                        "-fx-background: transparent;"
-        );
-        scrollPane.setOpacity(0.98); // small tweak to remove white bleed
-
-        dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(
-                        "Hello! I'm Ben. How can I help you?",
-                        dukeImage
-                )
-        );
-
-        sendButton.setOnMouseClicked(event -> handleUserInput());
-        userInput.setOnAction(event -> handleUserInput());
-
-        mainLayout.setPrefSize(400.0, 600.0);
-
-        scrollPane.setPrefSize(385.0, 535.0);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-
-        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
-
-        userInput.setPrefWidth(325.0);
-        sendButton.setPrefWidth(55.0);
-
-        AnchorPane.setTopAnchor(scrollPane, 1.0);
-
-        AnchorPane.setBottomAnchor(sendButton, 1.0);
-        AnchorPane.setRightAnchor(sendButton, 1.0);
-
-        AnchorPane.setLeftAnchor(userInput, 1.0);
-        AnchorPane.setBottomAnchor(userInput, 1.0);
-
-        // Auto scroll
-        dialogContainer.heightProperty().addListener(
-                observable -> scrollPane.setVvalue(1.0)
-        );
+        return mainLayout;
     }
 
     private void handleUserInput() {
@@ -116,16 +139,16 @@ public class Main extends Application {
         );
 
         try {
-            String dukeText = ben.getResponse(userText);
+            String benText = ben.getResponse(userText);
 
             dialogContainer.getChildren().add(
-                    DialogBox.getDukeDialog(dukeText, dukeImage)
+                    DialogBox.getBenDialog(benText, benImage)
             );
 
         } catch (Exception e) {
 
             dialogContainer.getChildren().add(
-                    DialogBox.getErrorDialog(e.getMessage(), dukeImage)
+                    DialogBox.getErrorDialog(e.getMessage(), benImage)
             );
         }
 

@@ -47,8 +47,7 @@ public class Storage {
             ArrayList<String> list = new ArrayList<>();
             return list;
         }
-        ArrayList<String> list = new ArrayList<>(Files.readAllLines(filePath));
-        return list;
+        return new ArrayList<>(Files.readAllLines(filePath));
     }
 
 }
