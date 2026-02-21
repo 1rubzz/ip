@@ -1,5 +1,6 @@
 package ben;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -80,6 +81,11 @@ public class MainWindow {
             dialogContainer.getChildren().add(
                     DialogBox.getBenDialog(benText, benImage)
             );
+
+            // Closes the program
+            if (ben.isExit()) {
+                Platform.exit();
+            }
 
         } catch (BenException e) {
             dialogContainer.getChildren().add(

@@ -15,6 +15,7 @@ public class Ben {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private boolean isExit; // Store the signal to exit
 
     /**
      * Creates a Ben chatbot instance using the given file path.
@@ -74,6 +75,18 @@ public class Ben {
 
         Command c = Parser.parse(input);
         c.execute(tasks, ui, storage);
+
+        isExit = c.isExit();
+
         return ui.getOutput();
+    }
+
+    /**
+     * Checks if a FareWell command has been encountered.
+     *
+     * @return Boolean of exit status.
+     */
+    public boolean isExit() {
+        return isExit;
     }
 }

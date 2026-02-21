@@ -160,21 +160,43 @@ public class Parser {
 
         if (fullCommand.startsWith("deadline")) {
             String[] parts1 = fullCommand.split(" ", 2);
-            if (parts1.length < 2) {
-                throw new BenException("The description of a deadline task cannot be empty.");
+
+            if (parts1.length < 2 || parts1[1].isBlank()) {
+                throw new BenException("Usage: deadline <description> /by <date>");
             }
 
-            String[] parts2 = parts1[1].split(" /by ");
+            String[] parts2 = parts1[1].split(" /by ", 2);
+
+            // Add additional layers of check
+            if (parts2.length < 2 || parts2[1].isBlank()) {
+                throw new BenException("Usage: deadline <description> /by <date>");
+            }
+
             return new CreateDeadlineCommand(parts2[1], parts2[0]);
         }
 
         if (fullCommand.startsWith("event")) {
             String[] parts1 = fullCommand.split(" ", 2);
+
+            if (parts1.length < 2 || parts1[1].isBlank()) {
+                throw new BenException("Usage: event <description> /from <start> /to <end>");
+            }
+
             String[] parts2 = parts1[1].split(" /from ", 2);
-            String[] parts3 = parts2[1].split(" /to ");
+
+            if (parts2.length < 2 || parts2[1].isBlank()) {
+                throw new BenException("Usage: event <description> /from <start> /to <end>");
+            }
+
+            String[] parts3 = parts2[1].split(" /to ", 2);
+
+            if (parts3.length < 2 || parts3[1].isBlank()) {
+                throw new BenException("Usage: event <description> /from <start> /to <end>");
+            }
 
             return new CreateEventCommand(parts3[0], parts3[1], parts2[0]);
         }
+
         return null;
     }
 
