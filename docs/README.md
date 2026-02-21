@@ -156,6 +156,12 @@ Now you have 2 tasks in the list.
 
 Searches for tasks containing a specific keyword.
 
+**Note:** 
+The numbering shown in the `find` results does **not** 
+correspond to the actual task index in the main task list.  
+To perform actions such as `mark`, `unmark`, or `delete`, 
+please use the `list` command to obtain the correct task index.
+
 **Format:**  
 `find KEYWORD`
 
